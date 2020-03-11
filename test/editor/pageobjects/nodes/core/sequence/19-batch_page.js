@@ -18,18 +18,22 @@ var util = require('util');
 
 var nodePage = require('../../node_page');
 
-function yamlNode(id) {
+function batchNode(id) {
     nodePage.call(this, id);
 }
 
-util.inherits(yamlNode, nodePage);
-
-yamlNode.prototype.setAction = function (action) {
-    browser.setValue('node-input-action', action);
+batchNode.prototype.setMode = function (mode) {
+    browser.selectWithWait('#node-input-mode', mode);
 }
 
-yamlNode.prototype.setProperty = function (property) {
-    browser.setValue('//*[contains(@class, "red-ui-typedInput-container")]/div[1]/input', property);
+batchNode.prototype.setCount = function (count) {
+    browser.setValue('#node-input-count', count);
 }
 
-module.exports = yamlNode;
+batchNode.prototype.setOverlap = function (overlap) {
+    browser.setValue('#node-input-overlap', overlap);
+}
+
+util.inherits(batchNode, nodePage);
+
+module.exports = batchNode;

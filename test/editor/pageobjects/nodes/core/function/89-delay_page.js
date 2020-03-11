@@ -14,22 +14,20 @@
  * limitations under the License.
  **/
 
-var util = require('util');
+var util = require("util");
 
-var nodePage = require('../../node_page');
+var nodePage = require("../../node_page");
 
-function yamlNode(id) {
+var keyPage = require("../../../util/key_page");
+
+function delayNode(id) {
     nodePage.call(this, id);
 }
 
-util.inherits(yamlNode, nodePage);
+util.inherits(delayNode, nodePage);
 
-yamlNode.prototype.setAction = function (action) {
-    browser.setValue('node-input-action', action);
+delayNode.prototype.setTimeout = function (timeout) {
+    browser.setValue('//*[@id="node-input-timeout"]', timeout);
 }
 
-yamlNode.prototype.setProperty = function (property) {
-    browser.setValue('//*[contains(@class, "red-ui-typedInput-container")]/div[1]/input', property);
-}
-
-module.exports = yamlNode;
+module.exports = delayNode;
